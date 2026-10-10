@@ -1,0 +1,342 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Student Project Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky top bar, centered 1100px column, card grid for projects, tables for admin */
+:root {
+  --bg: #f4f5f9; --surface: #ffffff; --ink: #1b2033; --muted: #656b84; --line: #e2e5ef;
+  --accent: #4a43d8; --accent-ink: #ffffff; --accent-soft: #e9e8fc;
+  --good: #16794a; --good-soft: #dcf3e6; --bad: #b42323; --bad-soft: #fbe3e3; --star: #f2b632;
+  --c1: #4a43d8; --c2: #0f8a7c; --c3: #c2410c; --c4: #9333a4; --c5: #1d6fb8; --c6: #8a6d0b;
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12141f; --surface: #1b1e2d; --ink: #e9ebf5; --muted: #9aa0ba; --line: #2c3045;
+  --accent: #8b86ff; --accent-ink: #12141f; --accent-soft: #2a2a52;
+  --good: #5fd39a; --good-soft: #17352a; --bad: #ff8f8f; --bad-soft: #3b1d1f; --star: #f2b632;
+  --c1: #7d78ff; --c2: #3cc4b3; --c3: #f08a55; --c4: #cf7be0; --c5: #5aa9ee; --c6: #d8b84a;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #12141f; --surface: #1b1e2d; --ink: #e9ebf5; --muted: #9aa0ba; --line: #2c3045;
+  --accent: #8b86ff; --accent-ink: #12141f; --accent-soft: #2a2a52;
+  --good: #5fd39a; --good-soft: #17352a; --bad: #ff8f8f; --bad-soft: #3b1d1f; --star: #f2b632;
+  --c1: #7d78ff; --c2: #3cc4b3; --c3: #f08a55; --c4: #cf7be0; --c5: #5aa9ee; --c6: #d8b84a;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; padding-inline: 0; }
+a { color: var(--accent); text-decoration: none; cursor: pointer; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; margin: 0; text-wrap: balance; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1100px; margin-inline: auto; padding-inline: 16px; }
+.muted { color: var(--muted); }
+
+.preview-note { background: var(--accent-soft); color: var(--ink); font-size: 13px; padding-block: 8px; }
+.preview-note .wrap { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.who { display: flex; align-items: center; gap: 8px; }
+.who select { padding: 4px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; gap: 16px; min-height: 60px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--ink); cursor: pointer; background: none; border: 0; padding: 0; }
+.brand i { color: var(--accent); font-style: normal; }
+.links { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
+.links button { background: none; border: 0; padding: 6px 12px; border-radius: 8px; color: var(--muted); font-weight: 500; cursor: pointer; }
+.links button:hover { background: var(--bg); }
+.links button.on { background: var(--accent-soft); color: var(--accent); }
+.auth { display: flex; gap: 8px; align-items: center; }
+
+.btn { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.ghost:hover { background: var(--accent-soft); }
+.btn.danger { background: transparent; color: var(--bad); border-color: var(--bad); }
+.btn.danger:hover { background: var(--bad-soft); }
+.btn.sm { padding: 3px 10px; font-size: 13px; }
+
+main { padding-block: 28px 56px; min-height: 70vh; }
+.hero { padding-block: 8px 20px; max-width: 640px; }
+.hero h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 800; }
+.hero p { color: var(--muted); margin: 8px 0 0; font-size: 16px; }
+
+.filters { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px; margin-block: 8px 16px; }
+input, select, textarea { width: 100%; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+textarea { resize: vertical; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 18px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.cover { height: 120px; display: flex; align-items: flex-end; justify-content: space-between; padding: 12px 14px; color: #fff; position: relative; }
+.cover b { font-family: var(--font-display); font-size: 44px; line-height: 1; font-weight: 800; opacity: .92; }
+.cover .tag { font-size: 11px; font-weight: 600; background: rgba(0,0,0,.3); padding: 2px 8px; border-radius: 99px; }
+.star { background: var(--star); color: #3b2a00; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 99px; position: absolute; top: 10px; right: 10px; }
+.hid { background: var(--bad-soft); color: var(--bad); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 99px; position: absolute; top: 10px; left: 10px; }
+.cbody { padding: 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
+.cbody h3 { font-size: 17px; }
+.cbody h3 a { color: var(--ink); }
+.cat { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+.clamp { margin: 0; color: var(--muted); font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 99px; }
+.cfoot { margin-top: auto; padding-top: 6px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 13px; }
+.cact { display: flex; gap: 8px; border-top: 1px solid var(--line); padding-top: 10px; flex-wrap: wrap; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+.panel.narrow { max-width: 440px; margin: 24px auto; }
+.panel h2 { font-size: 24px; margin-bottom: 14px; }
+label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 14px; }
+label input, label select, label textarea { margin-top: 6px; font-weight: 400; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.row.between { justify-content: space-between; margin-bottom: 16px; }
+.alert { background: var(--bad-soft); color: var(--bad); padding: 9px 12px; border-radius: 8px; margin-bottom: 12px; }
+.ok { background: var(--good-soft); color: var(--good); padding: 9px 12px; border-radius: 8px; margin-bottom: 12px; }
+.empty { text-align: center; color: var(--muted); padding: 48px 0; }
+
+.detail { max-width: 780px; }
+.detail .cover { height: 180px; border-radius: 12px; margin-block: 14px; }
+.detail h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; margin-block: 6px; }
+.detail .desc { font-size: 16px; margin-block: 16px; max-width: 65ch; }
+.liked { color: var(--bad); border-color: var(--bad); }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr) 2fr; gap: 12px; margin-bottom: 18px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; min-width: 0; }
+.stat b { display: block; font-family: var(--font-display); font-size: 28px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--muted); }
+.tabs { display: flex; gap: 4px; margin-bottom: 10px; }
+.tabs button { background: none; border: 0; padding: 7px 14px; border-radius: 8px; font-weight: 600; color: var(--muted); cursor: pointer; }
+.tabs button.on { background: var(--accent-soft); color: var(--accent); }
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.pill { font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 99px; }
+.pill.published { background: var(--good-soft); color: var(--good); }
+.pill.hidden { background: var(--bad-soft); color: var(--bad); }
+td .btn { margin-right: 4px; }
+.profile { display: flex; gap: 18px; align-items: center; margin-block: 14px 24px; }
+.avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-family: var(--font-display); font-size: 28px; font-weight: 800; flex-shrink: 0; }
+footer { border-top: 1px solid var(--line); text-align: center; padding: 20px 16px; color: var(--muted); font-size: 13px; }
+@media (max-width: 760px) {
+  .filters { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stat.wide { grid-column: span 2; }
+}
+@media (prefers-reduced-motion: no-preference) { .card { transition: transform .15s; } .card:hover { transform: translateY(-2px); } }
+</style>
+
+<div class="preview-note"><div class="wrap">
+  <span>Interactive preview with sample data. The full MERN app in the zip stores everything in MongoDB.</span>
+  <label class="who" style="margin:0;font-weight:500">Viewing as
+    <select id="who"><option value="guest">Guest</option><option value="u2">Asha Rao (student)</option><option value="u3">Ravi Teja (student)</option><option value="u1">Admin</option></select>
+  </label>
+</div></div>
+<header class="bar"><div class="wrap" id="nav"></div></header>
+<main class="wrap" id="view"></main>
+<footer>Student Project Showcase · MongoDB, Express, React, Node.js</footer>
+
+<script>
+var COLORS = ['--c1','--c2','--c3','--c4','--c5','--c6'];
+var users = [
+  {id:'u1', name:'Admin', email:'admin@showcase.com', role:'admin', dept:'', year:'', bio:''},
+  {id:'u2', name:'Asha Rao', email:'asha@showcase.com', role:'student', dept:'Computer Science', year:'Final Year', bio:'Full-stack developer who loves clean UI.'},
+  {id:'u3', name:'Ravi Teja', email:'ravi@showcase.com', role:'student', dept:'Information Technology', year:'Third Year', bio:'Interested in APIs and databases.'},
+  {id:'u4', name:'Meera Nair', email:'meera@showcase.com', role:'student', dept:'Electronics', year:'Second Year', bio:'Embedded systems and IoT tinkerer.'}
+];
+var projects = [
+  {id:'p1', title:'Campus Event Planner', desc:'Clubs publish events and students RSVP. Includes a calendar view, seat limits and email reminders the day before.', tech:['React','Node.js','Express','MongoDB'], gh:'https://github.com/example/campus-events', live:'https://example.com/campus-events', cat:'Web App', by:'u2', status:'published', featured:true, likes:['u3']},
+  {id:'p2', title:'Smart Attendance Tracker', desc:'Teachers mark attendance in two taps. Students see their percentage per subject and get alerts below 75%.', tech:['React','Express','MongoDB','Chart.js'], gh:'https://github.com/example/attendance', live:'', cat:'Education', by:'u2', status:'published', featured:false, likes:[]},
+  {id:'p3', title:'Budget Buddy', desc:'Personal finance tracker with categories, monthly budgets and spending charts by week and month.', tech:['React','Node.js','MongoDB'], gh:'https://github.com/example/budget-buddy', live:'https://example.com/budget', cat:'Finance', by:'u3', status:'published', featured:false, likes:['u2']},
+  {id:'p4', title:'Recipe Finder API', desc:'REST API with JWT auth that lets users save recipes and search them by the ingredients they have at home.', tech:['Node.js','Express','MongoDB','JWT'], gh:'https://github.com/example/recipe-api', live:'', cat:'API', by:'u3', status:'published', featured:false, likes:[]},
+  {id:'p5', title:'Plant Monitor', desc:'ESP32 soil sensors send moisture readings to a dashboard that predicts when each plant needs water.', tech:['React','Node.js','MQTT','MongoDB'], gh:'https://github.com/example/plant-monitor', live:'', cat:'IoT', by:'u4', status:'published', featured:true, likes:['u2','u3']},
+  {id:'p6', title:'Study Group Matcher', desc:'Matches students into study groups by course, timetable overlap and preferred study style.', tech:['React','Express','MongoDB'], gh:'https://github.com/example/study-match', live:'', cat:'Education', by:'u4', status:'hidden', featured:false, likes:[]}
+];
+var S = { user:null, view:'home', id:null, q:'', tech:'', cat:'', sort:'latest', adminTab:'projects', pendingDel:null, msg:'', err:'' };
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function uid(id){ return users.find(function(u){return u.id===id;}); }
+function color(p){ var all=[...new Set(projects.map(function(x){return x.cat;}))]; return 'var('+COLORS[all.indexOf(p.cat)%COLORS.length]+')'; }
+function go(view,id){ S.view=view; S.id=id||null; S.msg=''; S.err=''; S.pendingDel=null; render(); window.scrollTo(0,0); }
+
+function nav(){
+  var u=S.user, v=S.view;
+  var h='<button class="brand" data-go="home"><i>◆</i> ProjectShowcase</button><nav class="links">';
+  h+='<button class="'+(v==='home'?'on':'')+'" data-go="home">Explore</button>';
+  if(u){ h+='<button class="'+(v==='mine'?'on':'')+'" data-go="mine">My Projects</button><button class="'+(v==='form'&&!S.id?'on':'')+'" data-go="form">Publish</button>'; }
+  if(u&&u.role==='admin') h+='<button class="'+(v==='admin'?'on':'')+'" data-go="admin">Admin</button>';
+  h+='</nav><div class="auth">';
+  h+= u ? '<span class="muted">Hi, '+esc(u.name.split(' ')[0])+(u.role==='admin'?' (admin)':'')+'</span><button class="btn ghost sm" data-act="logout">Logout</button>'
+        : '<button class="btn ghost sm" data-go="login">Login</button><button class="btn sm" data-go="register">Sign up</button>';
+  return h+'</div>';
+}
+
+function card(p, actions, showStudent){
+  var s=uid(p.by);
+  return '<article class="card"><div class="cover" style="background:'+color(p)+'"><b>'+esc(p.title.charAt(0))+'</b><span class="tag">'+esc(p.cat)+'</span>'+
+    (p.featured?'<span class="star">★ Featured</span>':'')+(p.status==='hidden'?'<span class="hid">Hidden</span>':'')+'</div>'+
+    '<div class="cbody"><h3><a data-go="detail" data-id="'+p.id+'">'+esc(p.title)+'</a></h3><p class="clamp">'+esc(p.desc)+'</p>'+
+    '<div class="chips">'+p.tech.slice(0,5).map(function(t){return '<span class="chip">'+esc(t)+'</span>';}).join('')+'</div>'+
+    '<div class="cfoot">'+(showStudent!==false&&s?'<a data-go="student" data-id="'+s.id+'" class="muted">by '+esc(s.name)+'</a>':'<span></span>')+
+    '<span><a href="'+esc(p.gh)+'" target="_blank" rel="noreferrer">GitHub ↗</a>'+(p.live?' &nbsp;<a href="'+esc(p.live)+'" target="_blank" rel="noreferrer">Live ↗</a>':'')+'</span></div>'+
+    (actions?'<div class="cact">'+actions+'</div>':'')+'</div></article>';
+}
+
+function delBtn(id){
+  return S.pendingDel===id
+    ? '<button class="btn danger sm" data-act="del" data-id="'+id+'">Confirm delete</button><button class="btn ghost sm" data-act="cancel">Cancel</button>'
+    : '<button class="btn danger sm" data-act="askdel" data-id="'+id+'">Delete</button>';
+}
+
+function home(){
+  var pub=projects.filter(function(p){return p.status==='published';});
+  var techs=[...new Set([].concat.apply([],pub.map(function(p){return p.tech;})))].sort();
+  var cats=[...new Set(pub.map(function(p){return p.cat;}))].sort();
+  var q=S.q.toLowerCase();
+  var list=pub.filter(function(p){
+    return (!q||(p.title+' '+p.desc+' '+p.tech.join(' ')).toLowerCase().indexOf(q)>-1)&&(!S.tech||p.tech.indexOf(S.tech)>-1)&&(!S.cat||p.cat===S.cat);
+  });
+  if(S.sort==='title') list.sort(function(a,b){return a.title.localeCompare(b.title);});
+  else if(S.sort==='oldest') list.reverse();
+  else if(S.sort==='featured') list.sort(function(a,b){return (b.featured?1:0)-(a.featured?1:0);});
+  else list=list.slice().sort(function(a,b){return projects.indexOf(b)-projects.indexOf(a);});
+  var opt=function(arr,val,all){return '<option value="">'+all+'</option>'+arr.map(function(x){return '<option'+(x===val?' selected':'')+'>'+esc(x)+'</option>';}).join('');};
+  return '<section class="hero"><h1>Discover what students are building</h1><p>Browse real projects, see the tech behind them and jump straight to the code.</p></section>'+
+    '<div class="filters"><input id="q" placeholder="Search projects, tech, keywords…" value="'+esc(S.q)+'"><select id="tech">'+opt(techs,S.tech,'All technologies')+'</select><select id="cat">'+opt(cats,S.cat,'All categories')+'</select>'+
+    '<select id="sort"><option value="latest">Newest</option><option value="oldest"'+(S.sort==='oldest'?' selected':'')+'>Oldest</option><option value="title"'+(S.sort==='title'?' selected':'')+'>Title A–Z</option><option value="featured"'+(S.sort==='featured'?' selected':'')+'>Featured first</option></select></div>'+
+    '<p class="muted">'+list.length+' project'+(list.length===1?'':'s')+' found</p>'+
+    (list.length?'<div class="grid">'+list.map(function(p){return card(p);}).join('')+'</div>':'<p class="empty">No projects match your search.</p>');
+}
+
+function detail(){
+  var p=projects.find(function(x){return x.id===S.id;}); var u=S.user;
+  if(!p) return '<p class="empty">Project not found.</p>';
+  var s=uid(p.by), mine=u&&u.id===p.by, can=mine||(u&&u.role==='admin');
+  if(p.status==='hidden'&&!can) return '<p class="empty">Project not found.</p>';
+  var liked=u&&p.likes.indexOf(u.id)>-1;
+  return '<article class="detail"><a class="muted" data-go="home">← Back to projects</a><div class="cover" style="background:'+color(p)+'"><b style="font-size:72px">'+esc(p.title.charAt(0))+'</b></div>'+
+    '<span class="cat">'+esc(p.cat)+'</span><h1>'+esc(p.title)+'</h1>'+
+    '<p class="muted">By <a data-go="student" data-id="'+s.id+'">'+esc(s.name)+'</a>'+(s.dept?' · '+esc(s.dept):'')+(s.year?' · '+esc(s.year):'')+'</p>'+
+    '<div class="chips">'+p.tech.map(function(t){return '<span class="chip">'+esc(t)+'</span>';}).join('')+'</div>'+
+    '<p class="desc">'+esc(p.desc)+'</p><div class="row"><a class="btn" href="'+esc(p.gh)+'" target="_blank" rel="noreferrer" style="text-decoration:none">View on GitHub ↗</a>'+
+    (p.live?'<a class="btn ghost" href="'+esc(p.live)+'" target="_blank" rel="noreferrer" style="text-decoration:none">Live demo ↗</a>':'')+
+    '<button class="btn ghost '+(liked?'liked':'')+'" data-act="like" data-id="'+p.id+'">'+(liked?'♥':'♡')+' '+p.likes.length+'</button></div>'+
+    (can?'<div class="row" style="margin-top:14px"><button class="btn ghost sm" data-go="form" data-id="'+p.id+'">Edit</button>'+delBtn(p.id)+'</div>':'')+'</article>';
+}
+
+function login(){
+  return '<form class="panel narrow" id="loginForm"><h2>Welcome back</h2>'+(S.err?'<p class="alert">'+esc(S.err)+'</p>':'')+
+    '<label>Email<input id="le" type="email" required value="asha@showcase.com"></label><label>Password<input id="lp" type="password" required value="student123"></label>'+
+    '<button class="btn">Login</button><p class="muted">Demo logins: admin@showcase.com / admin123, asha@showcase.com / student123</p></form>';
+}
+function register(){
+  return '<form class="panel narrow" id="regForm"><h2>Create your student account</h2>'+(S.err?'<p class="alert">'+esc(S.err)+'</p>':'')+
+    '<label>Full name<input id="rn" required></label><label>Email<input id="re" type="email" required></label><label>Password (min 6 characters)<input id="rp" type="password" minlength="6" required></label>'+
+    '<label>Department<input id="rd" placeholder="e.g. Computer Science"></label><button class="btn">Sign up</button></form>';
+}
+function form(){
+  var p=S.id?projects.find(function(x){return x.id===S.id;}):null;
+  p=p||{title:'',desc:'',tech:[],gh:'',live:'',cat:'Web App'};
+  var cats=['Web App','Mobile App','API','Machine Learning','IoT','Education','Finance','Game','General'];
+  return '<form class="panel" id="projForm" style="max-width:640px"><h2>'+(S.id?'Edit project':'Publish a new project')+'</h2>'+(S.err?'<p class="alert">'+esc(S.err)+'</p>':'')+
+    '<label>Project title<input id="ft" required maxlength="120" value="'+esc(p.title)+'"></label>'+
+    '<label>Description<textarea id="fd" rows="5" required placeholder="What does it do? What problem does it solve?">'+esc(p.desc)+'</textarea></label>'+
+    '<label>Technologies (comma separated)<input id="ftech" placeholder="React, Node.js, MongoDB" value="'+esc(p.tech.join(', '))+'"></label>'+
+    '<label>Category<select id="fc">'+cats.map(function(c){return '<option'+(c===p.cat?' selected':'')+'>'+c+'</option>';}).join('')+'</select></label>'+
+    '<label>GitHub URL<input id="fg" type="url" required placeholder="https://github.com/you/project" value="'+esc(p.gh)+'"></label>'+
+    '<label>Live demo URL (optional)<input id="fl" type="url" placeholder="https://" value="'+esc(p.live)+'"></label>'+
+    '<div class="row"><button class="btn">'+(S.id?'Save changes':'Publish project')+'</button><button type="button" class="btn ghost" data-go="'+(S.id?'detail':'home')+'" data-id="'+(S.id||'')+'">Cancel</button></div></form>';
+}
+function mine(){
+  var u=S.user, list=projects.filter(function(p){return p.by===u.id;});
+  var h='<div class="row between"><h2>My projects</h2><button class="btn" data-go="form">+ New project</button></div>'+(S.msg?'<p class="ok">'+esc(S.msg)+'</p>':'');
+  h+= list.length?'<div class="grid">'+list.map(function(p){return card(p,'<button class="btn ghost sm" data-go="form" data-id="'+p.id+'">Edit</button>'+delBtn(p.id),false);}).join('')+'</div>'
+                 :'<p class="empty">You have not published anything yet. <a data-go="form">Add your first project</a>.</p>';
+  return h;
+}
+function student(){
+  var s=uid(S.id); if(!s) return '<p class="empty">Student not found.</p>';
+  var list=projects.filter(function(p){return p.by===s.id&&p.status==='published';});
+  return '<a class="muted" data-go="home">← Back</a><section class="panel profile"><div class="avatar">'+esc(s.name.charAt(0))+'</div><div><h2 style="margin:0">'+esc(s.name)+'</h2><p class="muted" style="margin:2px 0">'+esc([s.dept,s.year].filter(Boolean).join(' · '))+'</p>'+(s.bio?'<p style="margin:4px 0 0">'+esc(s.bio)+'</p>':'')+'</div></section>'+
+    '<h3 style="margin-bottom:12px">Projects ('+list.length+')</h3>'+(list.length?'<div class="grid">'+list.map(function(p){return card(p,null,false);}).join('')+'</div>':'<p class="empty">No published projects yet.</p>');
+}
+function admin(){
+  var students=users.filter(function(u){return u.role==='student';}).length;
+  var counts={}; projects.forEach(function(p){p.tech.forEach(function(t){counts[t]=(counts[t]||0)+1;});});
+  var top=Object.keys(counts).sort(function(a,b){return counts[b]-counts[a];}).slice(0,5);
+  var h='<h2 style="margin-bottom:14px">Admin panel</h2><div class="stats">'+
+    '<div class="stat"><b>'+projects.length+'</b><span>Projects</span></div><div class="stat"><b>'+students+'</b><span>Students</span></div>'+
+    '<div class="stat"><b>'+projects.filter(function(p){return p.featured;}).length+'</b><span>Featured</span></div><div class="stat"><b>'+projects.filter(function(p){return p.status==='hidden';}).length+'</b><span>Hidden</span></div>'+
+    '<div class="stat wide"><span>Top technologies</span><div class="chips" style="margin-top:6px">'+top.map(function(t){return '<span class="chip">'+esc(t)+' · '+counts[t]+'</span>';}).join('')+'</div></div></div>'+
+    '<div class="tabs"><button class="'+(S.adminTab==='projects'?'on':'')+'" data-tab="projects">Projects</button><button class="'+(S.adminTab==='users'?'on':'')+'" data-tab="users">Users</button></div>';
+  if(S.adminTab==='projects'){
+    h+='<div class="tbl"><table><thead><tr><th>Title</th><th>Student</th><th>Status</th><th>Featured</th><th>Actions</th></tr></thead><tbody>'+
+      projects.map(function(p){var s=uid(p.by);return '<tr><td><a data-go="detail" data-id="'+p.id+'">'+esc(p.title)+'</a></td><td>'+esc(s?s.name:'—')+'</td><td><span class="pill '+p.status+'">'+p.status+'</span></td><td>'+(p.featured?'★':'—')+'</td><td>'+
+        '<button class="btn ghost sm" data-act="status" data-id="'+p.id+'">'+(p.status==='published'?'Hide':'Publish')+'</button><button class="btn ghost sm" data-act="feature" data-id="'+p.id+'">'+(p.featured?'Unfeature':'Feature')+'</button>'+delBtn(p.id)+'</td></tr>';}).join('')+'</tbody></table></div>';
+  } else {
+    h+='<div class="tbl"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Projects</th></tr></thead><tbody>'+
+      users.map(function(u){return '<tr><td>'+esc(u.name)+'</td><td>'+esc(u.email)+'</td><td><select data-role="'+u.id+'" '+(u.id===S.user.id?'disabled':'')+' style="width:auto;padding:4px 8px"><option'+(u.role==='student'?' selected':'')+'>student</option><option'+(u.role==='admin'?' selected':'')+'>admin</option></select></td><td>'+projects.filter(function(p){return p.by===u.id;}).length+'</td></tr>';}).join('')+'</tbody></table></div>';
+  }
+  return h;
+}
+
+function render(){
+  var guarded={mine:1,form:1,admin:1};
+  var v=S.view;
+  if(guarded[v]&&!S.user) v=S.view='login';
+  if(v==='admin'&&S.user&&S.user.role!=='admin') { document.getElementById('nav').innerHTML=nav(); document.getElementById('view').innerHTML='<p class="empty">You do not have access to this page.</p>'; return; }
+  document.getElementById('nav').innerHTML=nav();
+  var map={home:home,detail:detail,login:login,register:register,form:form,mine:mine,student:student,admin:admin};
+  var focus=document.activeElement&&document.activeElement.id, pos=document.activeElement&&document.activeElement.selectionStart;
+  document.getElementById('view').innerHTML=(map[v]||home)();
+  if(v==='home'&&focus==='q'){var el=document.getElementById('q'); el.focus(); try{el.setSelectionRange(pos,pos);}catch(e){}}
+}
+
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-go],[data-act],[data-tab]'); if(!t) return;
+  if(t.dataset.tab){ S.adminTab=t.dataset.tab; S.pendingDel=null; return render(); }
+  if(t.dataset.go){ if(t.dataset.go==='form') return go('form',t.dataset.id||null); return go(t.dataset.go,t.dataset.id||null); }
+  var a=t.dataset.act, id=t.dataset.id, p=projects.find(function(x){return x.id===id;});
+  if(a==='logout'){ S.user=null; document.getElementById('who').value='guest'; return go('home'); }
+  if(a==='askdel'){ S.pendingDel=id; return render(); }
+  if(a==='cancel'){ S.pendingDel=null; return render(); }
+  if(a==='del'){ projects=projects.filter(function(x){return x.id!==id;}); S.pendingDel=null; var was=S.view; if(was==='detail') return go(S.user&&S.user.role==='admin'?'admin':'mine'); S.msg='Project deleted'; return render(); }
+  if(a==='like'){ if(!S.user) return go('login'); var i=p.likes.indexOf(S.user.id); if(i>-1) p.likes.splice(i,1); else p.likes.push(S.user.id); return render(); }
+  if(a==='status'){ p.status=p.status==='published'?'hidden':'published'; return render(); }
+  if(a==='feature'){ p.featured=!p.featured; return render(); }
+});
+document.addEventListener('input',function(e){ if(e.target.id==='q'){ S.q=e.target.value; render(); } });
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.id==='who'){ S.user=t.value==='guest'?null:uid(t.value); return go(S.user?(S.user.role==='admin'?'admin':'mine'):'home'); }
+  if(t.id==='tech'){ S.tech=t.value; return render(); }
+  if(t.id==='cat'){ S.cat=t.value; return render(); }
+  if(t.id==='sort'){ S.sort=t.value; return render(); }
+  if(t.dataset&&t.dataset.role){ uid(t.dataset.role).role=t.value; return render(); }
+});
+document.addEventListener('submit',function(e){
+  e.preventDefault(); var f=e.target.id, val=function(i){return document.getElementById(i).value.trim();};
+  if(f==='loginForm'){
+    var pw={'admin@showcase.com':'admin123','asha@showcase.com':'student123','ravi@showcase.com':'student123'}, em=val('le').toLowerCase();
+    if(pw[em]&&pw[em]===document.getElementById('lp').value){ S.user=users.find(function(u){return u.email===em;}); document.getElementById('who').value=S.user.id; return go(S.user.role==='admin'?'admin':'mine'); }
+    S.err='Invalid email or password'; return render();
+  }
+  if(f==='regForm'){
+    var em2=val('re').toLowerCase();
+    if(users.some(function(u){return u.email===em2;})){ S.err='Email already registered'; return render(); }
+    var nu={id:'u'+(users.length+1),name:val('rn'),email:em2,role:'student',dept:val('rd'),year:'',bio:''}; users.push(nu); S.user=nu;
+    var sel=document.getElementById('who'); sel.add(new Option(nu.name+' (student)',nu.id)); sel.value=nu.id; return go('form');
+  }
+  if(f==='projForm'){
+    var data={title:val('ft'),desc:val('fd'),tech:val('ftech').split(',').map(function(x){return x.trim();}).filter(Boolean),cat:document.getElementById('fc').value,gh:val('fg'),live:val('fl')};
+    if(S.id){ Object.assign(projects.find(function(x){return x.id===S.id;}),data); return go('detail',S.id); }
+    var np=Object.assign({id:'p'+Date.now(),by:S.user.id,status:'published',featured:false,likes:[]},data); projects.push(np); S.msg='Project published'; return go('detail',np.id);
+  }
+});
+render();
+</script>
+
+</body></html>
